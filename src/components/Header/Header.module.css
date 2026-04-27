@@ -1,0 +1,215 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  background: var(--header-bg);
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 0 16px;
+  gap: 8px;
+}
+
+/* ── Left: Logo + Search ── */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.logoIcon {
+  color: #5b9cf6;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: #5b9cf6;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.09);
+  border-radius: 20px;
+  padding: 7px 16px;
+  flex: 1;
+  max-width: 480px;
+  transition: background 0.2s;
+}
+
+.searchBox:focus-within {
+  background: rgba(255,255,255,0.15);
+}
+
+.searchIcon {
+  color: rgba(255,255,255,0.45);
+  flex-shrink: 0;
+}
+
+.searchInput {
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+  width: 100%;
+}
+
+.searchInput::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+
+/* ── Center: Nav Tabs ── */
+.centerNav {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+  justify-content: center;
+  height: 56px;
+  gap: 4px;
+}
+
+.tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 56px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255,255,255,0.45);
+  transition: color 0.15s, background 0.15s;
+  padding: 0;
+  overflow: visible;
+}
+
+.tab::before {
+  content: '';
+  position: absolute;
+  inset: 8px 4px;
+  border-radius: 8px;
+  background: transparent;
+  transition: background 0.15s;
+}
+
+.tab:hover::before {
+  background: rgba(255,255,255,0.08);
+}
+
+.tab:hover {
+  color: rgba(255,255,255,0.9);
+}
+
+.tab svg {
+  position: relative;
+  z-index: 1;
+}
+
+.activeTab {
+  color: #5b9cf6;
+}
+
+.activeTab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #5b9cf6;
+  border-radius: 2px 2px 0 0;
+}
+
+/* ── Right: Actions ── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 240px;
+  justify-content: flex-end;
+}
+
+.iconBtn {
+  position: relative;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  cursor: pointer;
+  color: white;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.iconBtn:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+.badge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  min-width: 18px;
+  height: 18px;
+  background: #ef4444;
+  color: white;
+  border-radius: 9px;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--header-bg);
+  padding: 0 3px;
+  line-height: 1;
+}
+
+.profileBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.09);
+  border-radius: 20px;
+  padding: 5px 12px 5px 5px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s;
+}
+
+.profileBtn:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profileName {
+  color: rgba(255,255,255,0.88);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}

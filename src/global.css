@@ -1,0 +1,66 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Light theme (default) ── */
+:root,
+[data-theme="light"] {
+  --bg-app:       #f0f2f5;
+  --bg-surface:   #ffffff;
+  --bg-hover:     #f3f4f6;
+  --bg-active:    #eff6ff;
+  --bg-input:     #f3f4f6;
+  --text-1:       #111827;
+  --text-2:       #4b5563;
+  --text-3:       #9ca3af;
+  --border:       #e5e7eb;
+  --border-soft:  #f3f4f6;
+  --accent:       #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-light: #eff6ff;
+  --danger:       #e53935;
+  --danger-bg:    #fef2f2;
+  --header-bg:    #0d1b2a;
+  --shadow:       0 1px 4px rgba(0,0,0,0.08);
+}
+
+/* ── Dark theme ── */
+[data-theme="dark"] {
+  --bg-app:       #0f1117;
+  --bg-surface:   #1a1d27;
+  --bg-hover:     #252836;
+  --bg-active:    #1e3358;
+  --bg-input:     #1e2130;
+  --text-1:       #ffffff;
+  --text-2:       rgba(255,255,255,0.7);
+  --text-3:       rgba(255,255,255,0.4);
+  --border:       #32374a;
+  --border-soft:  #252836;
+  --accent:       #5b9cf6;
+  --accent-hover: #3b82f6;
+  --accent-light: #1a2744;
+  --danger:       #fc8181;
+  --danger-bg:    rgba(239,68,68,0.15);
+  --header-bg:    #0c0f18;
+  --shadow:       0 2px 8px rgba(0,0,0,0.5);
+}
+
+/* ── Hide scrollbars globally ── */
+* {
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-app);
+  color: var(--text-1);
+  transition: background 0.2s, color 0.2s;
+}
+
