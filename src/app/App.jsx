@@ -5,6 +5,7 @@ import usePosts from '@shared/hooks/usePosts'
 import useDarkMode from '@shared/hooks/useDarkMode'
 import useDebounce from '@shared/hooks/useDebounce'
 import useModal from '@shared/hooks/useModal'
+import useTitle from '@shared/hooks/useTitle'
 import Header from '@components/Header/Header'
 import Sidebar from '@components/Sidebar/Sidebar'
 import Feed from '@components/Feed/Feed'
@@ -18,6 +19,8 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('')
   const debouncedSearch = useDebounce(searchQuery, 500)
   const { isOpen: modalOpen, open: openModal, close: closeModal } = useModal()
+
+  useTitle(debouncedSearch ? `"${debouncedSearch}" axtarışı` : null)
 
   const handleSearch = useCallback((q) => setSearchQuery(q), [])
 
