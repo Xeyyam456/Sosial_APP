@@ -54,17 +54,6 @@ const PostCard = memo(({ post, deletePost, toggleLike }) => {
         </div>
       )}
 
-      {/* Reactions row */}
-      {post.likeCount > 0 && (
-        <div className={styles.reactions}>
-          <div className={styles.reactionRow}>
-            <span className={styles.reactionEmojis}>❤️</span>
-            <span className={styles.reactionCount}>{post.likeCount}</span>
-          </div>
-          <span className={styles.commentCount}>0 comments</span>
-        </div>
-      )}
-
       <PostCardActions
         liked={post.liked}
         onLike={handleLike}
