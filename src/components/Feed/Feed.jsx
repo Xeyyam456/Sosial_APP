@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useCallback } from 'react'
 import PostCard from '@components/PostCard/PostCard'
-import { CURRENT_USER } from '@utils'
+import CreatePostBox from './CreatePostBox'
 import styles from './Feed.module.css'
 
 const PostSkeleton = () => (
@@ -69,13 +69,7 @@ const Feed = ({ posts, loading, error, searchQuery = '', fetchPosts, deletePost,
 
   return (
     <div className={styles.feed}>
-      {/* Create Post Box */}
-      <div className={styles.createBox}>
-        <img src={CURRENT_USER.avatar} alt="avatar" className={styles.createAvatar} />
-        <button className={styles.createInput} onClick={onCreatePost}>
-          What's on your mind, Sarkhan?
-        </button>
-      </div>
+      <CreatePostBox onClick={onCreatePost} />
 
       {filteredPosts.map((post) => (
         <PostCard

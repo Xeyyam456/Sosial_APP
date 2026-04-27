@@ -1,8 +1,10 @@
 import { memo, useCallback, useMemo } from 'react'
-import { MdClose, MdPublic, MdMoreVert, MdFavorite, MdFavoriteBorder, MdShare, MdDelete } from 'react-icons/md'
 import { toast } from 'react-toastify'
-import { formatDate, getAvatarColor } from '@utils'
+import { getAvatarColor } from '@utils'
 import useModal from '@shared/hooks/useModal'
+import PostCardHeader from './PostCardHeader'
+import PostCardActions from './PostCardActions'
+import PostDeleteConfirm from './PostDeleteConfirm'
 import styles from './PostCard.module.css'
 
 const PostCard = memo(({ post, deletePost, toggleLike }) => {
@@ -24,29 +26,18 @@ const PostCard = memo(({ post, deletePost, toggleLike }) => {
 
   return (
     <article className={styles.card}>
-      {/* Header */}
-      <div className={styles.header}>
-        <div className={styles.authorRow}>
-          <div className={styles.avatar} style={{ background: avatarColor }}>
-            {avatarLetter}
-          </div>
-          <div className={styles.authorMeta}>
-            <p className={styles.name}>{post.author ?? `User ${post.userId}`}</p>
-            <div className={styles.metaRow}>
-              <span className={styles.time}>{formatDate(post.createdAt)}</span>
-              <MdPublic className={styles.publicIcon} size={12} />
-            </div>
-          </div>
-        </div>
-        <button className={styles.dotsBtn} aria-label="more">
-          <MdMoreVert size={20} />
-        </button>
-      </div>
+      <PostCardHeader
+        avatarColor={avatarColor}
+        avatarLetter={avatarLetter}
+        author={post.author}
+        userId={post.userId}
+        createdAt={post.createdAt}
+      />
 
       {/* Content */}
       {post.title && (
         <div className={styles.content}>
-          {post.title && <p className={styles.title}>{post.title}</p>}
+          <p className={styles.title}>{post.title}</p>
           {post.body && <p className={styles.body}>{post.body}</p>}
         </div>
       )}
@@ -63,48 +54,29 @@ const PostCard = memo(({ post, deletePost, toggleLike }) => {
         </div>
       )}
 
-      {/* Action bar */}
-      <div className={styles.actions}>
-        <button
-          className={`${styles.actionBtn} ${post.liked ? styles.liked : ''}`}
-          onClick={handleLike}
-          aria-label="like"
-        >
-          {post.liked ? <MdFavorite size={20} /> : <MdFavoriteBorder size={20} />}
-          Like
-        </button>
-
-        
-
-        <button className={styles.actionBtn} onClick={handleShare} aria-label="share">
-          <MdShare size={20} />
-          Share
-        </button>
-
-        <button
-          className={`${styles.actionBtn} ${styles.deleteBtn}`}
-          onClick={openConfirm}
-          aria-label="delete"
-        >
-          <MdDelete size={20} />
-        </button>
-      </div>
-
-      {/* Confirm Delete Modal */}
-      {confirmOpen && (
-        <div className={styles.confirmBackdrop} onClick={closeConfirm}>
-          <div className={styles.confirmModal} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.confirmCloseBtn} onClick={closeConfirm} aria-label="close">
-              <MdClose size={20} />
-            </button>
-            <p className={styles.confirmText}>Bu postu silmək istədiyinizə əminsiniz?</p>
-            <div className={styles.confirmActions}>
-              <button className={styles.cancelBtn} onClick={closeConfirm}>Ləğv et</button>
-              <button className={styles.confirmDeleteBtn} onClick={handleConfirmDelete}>Sil</button>
-            </div>
+      {/* Reactions row */}
+      {post.likeCount > 0 && (
+        <div className={styles.reactions}>
+          <div className={styles.reactionRow}>
+            <span className={styles.reactionEmojis}>❤️</span>
+            <span className={styles.reactionCount}>{post.likeCount}</span>
           </div>
+          <span className={styles.commentCount}>0 comments</span>
         </div>
       )}
+
+      <PostCardActions
+        liked={post.liked}
+        onLike={handleLike}
+        onShare={handleShare}
+        onDelete={openConfirm}
+      />
+
+      <PostDeleteConfirm
+        isOpen={confirmOpen}
+        onClose={closeConfirm}
+        onConfirm={handleConfirmDelete}
+      />
     </article>
   )
 })

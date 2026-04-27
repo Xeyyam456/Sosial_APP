@@ -4,7 +4,8 @@ import {
   MdPlayCircle, MdBookmark, MdSettings,
   MdAdd, MdLightMode, MdDarkMode,
 } from 'react-icons/md'
-import { CURRENT_USER } from '@utils'
+import ProfileCard from './ProfileCard'
+import StatsBar from './StatsBar'
 import styles from './Sidebar.module.css'
 
 const NAV_ITEMS = [
@@ -24,32 +25,8 @@ const Sidebar = ({ onCreatePost, darkMode, onToggleDark }) => {
   return (
     <aside className={styles.sidebar}>
 
-      {/* Profile Card */}
-      <div className={styles.profileCard}>
-        <img src={CURRENT_USER.avatar} alt="avatar" className={styles.profileAvatar} />
-        <div className={styles.profileInfo}>
-          <p className={styles.profileName}>Sarkhan Rahimli</p>
-          <p className={styles.profileHandle}>@sarkhandev</p>
-        </div>
-      </div>
-
-      {/* Stats */}
-      <div className={styles.stats}>
-        <div className={styles.stat}>
-          <span className={styles.statNum}>128</span>
-          <span className={styles.statLabel}>Posts</span>
-        </div>
-        <div className={styles.statDivider} />
-        <div className={styles.stat}>
-          <span className={styles.statNum}>2.4k</span>
-          <span className={styles.statLabel}>Followers</span>
-        </div>
-        <div className={styles.statDivider} />
-        <div className={styles.stat}>
-          <span className={styles.statNum}>391</span>
-          <span className={styles.statLabel}>Following</span>
-        </div>
-      </div>
+      <ProfileCard />
+      <StatsBar />
 
       <div className={styles.sectionDivider} />
 
